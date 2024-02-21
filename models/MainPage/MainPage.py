@@ -1,12 +1,12 @@
 import urllib.parse
-from undetected_chromedriver import Chrome
 
+from models.Page.Page import Page
 from models.Product.Product import Product
 from consts import URL
 
-class MainPage:
-    def __init__(self, browser: Chrome):
-        self._browser = browser
+class MainPage(Page):
+    def __init__(self):
+        super().__init__()
 
     def search_product(self, product: Product):
         search_query = product.get_name()

@@ -1,21 +1,18 @@
-from undetected_chromedriver import Chrome
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from consts import ELEMENT_SEARCH_DELAY
+from models.Page.Page import Page
 
-class SearchResultPage:
+class SearchResultPage(Page):
     PRODUCT_CARD_CLASS = "product-card.product-card--hoverable.j-card-item"
     PRODUCT_RATE_CLASS = "address-rate-mini.address-rate-mini--sm"
     PRODUCT_PAGE_LINK_CLASS = "product-card__link"
     SEARCH_RESULT_TEXT_CLASS = "searching-results__text"
     NOT_FOUND_HEADING_CLASS = "catalog-page__not-found"
 
-    def __init__(self, browser: Chrome):
-        self._browser = browser
-        self._wait = WebDriverWait(browser, ELEMENT_SEARCH_DELAY)
+    def __init__(self):
+        super().__init__()
 
     def get_product_page_links(self):
         product_page_links = []

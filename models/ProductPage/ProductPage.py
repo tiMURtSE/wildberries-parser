@@ -1,16 +1,13 @@
-from undetected_chromedriver import Chrome
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from consts import ELEMENT_SEARCH_DELAY
+from models.Page.Page import Page
 
-class ProductPage:
+class ProductPage(Page):
     REVIEWS_PAGE_LINK_ID = "comments_reviews_link"
 
-    def __init__(self, browser: Chrome):
-        self._browser = browser
-        self._wait = WebDriverWait(browser, ELEMENT_SEARCH_DELAY)
+    def __init__(self):
+        super().__init__()
 
     def go_to_reviews_page(self):
         reviews_page_link = self._wait.until(
