@@ -22,11 +22,9 @@ class Page:
     def _set_browser(self):
         if Page._browser_instance:
             self._browser = Page._browser_instance
-            print(f"Browser got link to instance. Place: {self._browser.__dir__}")
         else:
             self._browser = uc.Chrome()
             Page._browser_instance = self._browser
-            print(f"Browser inited for the first time. Place: {self._browser.__dir__}")
 
     def _scroll_to_bottom(self):
         SCROLL_HEIGHT = "document.body.scrollHeight"

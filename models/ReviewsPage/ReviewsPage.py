@@ -5,6 +5,7 @@ from selenium.common.exceptions import TimeoutException
 from models.Page.Page import Page
 from models.Product.Product import Product
 from models.ReviewElement.ReviewElement import ReviewElement
+from models.Error.Error import Error
 
 class ReviewsPage(Page):
     REVIEW_CLASS = "comments__item"
@@ -13,6 +14,7 @@ class ReviewsPage(Page):
     def __init__(self):
         super().__init__()
         self._review_element = ReviewElement()
+        self._error = Error()
 
     def get_reviews(self, product: Product):
         reviews = []
@@ -26,7 +28,13 @@ class ReviewsPage(Page):
         review_elements = self._browser.find_elements(By.CLASS_NAME, self.REVIEW_CLASS)
 
         for review_element in review_elements:
-            review = self._review_element.get_review(review_element=review_element, product=product)
+            try:
+                review = self._review_element.get_review(review_element=review_element, product=product)
+            except Exception as e:
+                self._error.set_failed_product(error=e, product=product)
+                print(f"Ошибка у товара {product.get_name()}: {e}")
+                continue
+
             reviews.append(review)
 
         return reviews

@@ -11,6 +11,7 @@ class Product:
         self._id = self._row[self.ID_COL_INDEX].value
         self._article = self._row[self.ARTICLE_COL_INDEX].value
         self._series = self._row[self.SERIES_COL_IDNEX].value
+        self._page_links = []
         self._reviews = []
 
     @property
@@ -20,6 +21,18 @@ class Product:
     @id.setter
     def id(self, value):
         self._id = value
+
+    @property
+    def article(self):
+        return self._article
+    
+    @property
+    def page_links(self):
+        return self._page_links
+    
+    @page_links.setter
+    def page_links(self, value):
+        self._page_links = value
 
     @property
     def reviews(self):
@@ -32,10 +45,9 @@ class Product:
     def get_name(self):
         return f"{self._series} {self._article}"
 
-    def show_info(self):
+    def get_info(self):
         return {
             "id": self._id,
             "article": self._article,
-            "series": self._series,
             "reviews": self._reviews
         }

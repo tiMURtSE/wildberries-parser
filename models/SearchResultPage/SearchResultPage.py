@@ -28,8 +28,10 @@ class SearchResultPage(Page):
             if product_rate:
                 product_page_link = self._find_product_page_link(product_card=card)
                 product_page_links.append(product_page_link)
+
+        filtered_page_links = self._filter_page_links(page_links=product_page_links)
         
-        return product_page_links
+        return filtered_page_links
 
     def _get_product_cards(self):
         product_cards = self._wait.until(
@@ -58,3 +60,8 @@ class SearchResultPage(Page):
         not_found_heading_with_suggestion = "ничего не нашлось" in search_result_text
 
         return not_found_heading or not_found_heading_with_suggestion
+    
+    def _filter_page_links(self, page_links):
+        filtered_page_links = list(filter(lambda page_link: page_link, page_links))
+
+        return filtered_page_links

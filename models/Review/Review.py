@@ -3,6 +3,6 @@ class Review:
         self._product_id = product_id
         self._customer_name = review["customer_name"]
         self._comment = review["comment"]
-        self. rate = review["rate"]
+        self._rate = review["rate"]
 
     
