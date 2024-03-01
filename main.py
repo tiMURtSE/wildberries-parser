@@ -1,4 +1,4 @@
-import my_library
+from my_library import Workbook
 from models.WorksheetConverter.WorksheetConverter import WorksheetConverter
 from models.Page.Page import Page
 from models.MainPage.MainPage import MainPage
@@ -16,20 +16,20 @@ class Main:
         self._search_result_page = SearchResultPage()
         self._product_page = ProductPage()
         self._reviews_page = ReviewsPage()
-        self._export_workbook = my_library.ExportWorkbook()
-        self._worksheet_converter = WorksheetConverter()
+        self._export_workbook = Workbook()
         self._result_workbook = ResultWorkbook()
+        self._worksheet_converter = WorksheetConverter()
         self._error = Error()
 
     def run(self):
         self._page.get(URL)
         sheet = self._export_workbook.get_data()
         products = self._worksheet_converter.convert_to_products(sheet=sheet)
+        start_pos = int(input("Номер строки, с которой нужно начать прохождение по товарам:\n"))
 
-        for product in products[:15]:
+        for product in products[start_pos:]:
             self._main_page.search_product(product=product)
-            product_page_links = self._search_result_page.get_product_page_links()
-            product.page_links = product_page_links
+            product.page_links = self._search_result_page.get_product_page_links()
 
             for page_link in product.page_links:
                 self._page.get(page_link)
