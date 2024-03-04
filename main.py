@@ -25,7 +25,7 @@ class Main:
         self._page.get(URL)
         sheet = self._export_workbook.get_data()
         products = self._worksheet_converter.convert_to_products(sheet=sheet)
-        start_pos = int(input("Номер строки, с которой нужно начать прохождение по товарам:\n"))
+        start_pos = int(input("Номер товара, с которого нужно начать прохождение парсинг:\n"))
 
         for product in products[start_pos:]:
             self._main_page.search_product(product=product)
