@@ -43,10 +43,10 @@ class Main:
 
             if product.reviews:
                 print(f"Количество отзывов: {len(product.reviews)}")
+                self._result_workbook.write_result(product=product)
             
         self._page.quit()
         self._error.print_failed_product()
-        self._result_workbook.write_result(products=products)
 
 if __name__ == "__main__":
     app = Main()

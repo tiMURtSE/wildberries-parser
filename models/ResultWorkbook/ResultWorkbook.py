@@ -18,17 +18,14 @@ class ResultWorkbook(Workbook):
     def __init__(self):
         self._workbook = openpyxl.load_workbook(self.RESULT_WORKBOOK_FILE_PATH)
         self._sheet: Worksheet = self._workbook.active
-        self._row_start_position = self._get_row_start_position()
 
-    def write_result(self, products: List[Product]):
-        current_row_index = 0
+    def write_result(self, product: Product):
+        row_start_position = self._get_row_start_position()
 
-        for product in products:
-            for review in product.reviews:
-                row_index = current_row_index + self._row_start_position
+        for index, review in enumerate(product.reviews):
+            row_index = index + row_start_position
 
-                self._write_review(row_index=row_index, review=review, product=product)
-                current_row_index += 1
+            self._write_review(row_index=row_index, review=review, product=product)
 
         self._workbook.save(self.RESULT_WORKBOOK_FILE_PATH)
 
