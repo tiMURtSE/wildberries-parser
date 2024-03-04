@@ -31,6 +31,10 @@ class Main:
             self._main_page.search_product(product=product)
             product.page_links = self._search_result_page.get_product_page_links()
 
+            if not product.page_links:
+                print("Нужных товаров не было найдено")
+                continue
+
             for page_link in product.page_links:
                 self._page.get(page_link)
                 self._product_page.go_to_reviews_page()
@@ -38,7 +42,7 @@ class Main:
                 product.reviews.extend(reviews)
 
             if product.reviews:
-                print(f"Отзыв: {[review.__dict__ for review in product.reviews]}")
+                print(f"Количество отзывов: {len(product.reviews)}")
             
         self._page.quit()
         self._error.print_failed_product()

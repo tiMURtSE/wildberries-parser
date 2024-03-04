@@ -19,7 +19,6 @@ class SearchResultPage(Page):
         product_cards = self._get_product_cards()
 
         if self._are_products_not_found():
-            print("Нужных товаров не было найдено")
             return product_page_links
 
         for card in product_cards:
