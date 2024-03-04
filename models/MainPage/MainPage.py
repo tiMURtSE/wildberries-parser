@@ -1,10 +1,10 @@
 import urllib.parse
 
-from models.Page.Page import Page
+from Browser import Browser
 from models.Product.Product import Product
 from consts import URL
 
-class MainPage(Page):
+class MainPage(Browser):
     def __init__(self):
         super().__init__()
 

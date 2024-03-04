@@ -1,6 +1,6 @@
-from my_library import Workbook
+from Workbook import Workbook
 from models.WorksheetConverter.WorksheetConverter import WorksheetConverter
-from models.Page.Page import Page
+from Browser import Browser
 from models.MainPage.MainPage import MainPage
 from models.SearchResultPage.SearchResultPage import SearchResultPage
 from models.ProductPage.ProductPage import ProductPage
@@ -11,7 +11,7 @@ from consts import URL
 
 class Main:
     def __init__(self):
-        self._page = Page()
+        self._browser = Browser()
         self._main_page = MainPage()
         self._search_result_page = SearchResultPage()
         self._product_page = ProductPage()
@@ -22,7 +22,7 @@ class Main:
         self._error = Error()
 
     def run(self):
-        self._page.get(URL)
+        self._browser.get(URL)
         sheet = self._export_workbook.get_data()
         products = self._worksheet_converter.convert_to_products(sheet=sheet)
         start_pos = int(input("Номер товара, с которого нужно начать прохождение парсинг:\n"))
@@ -36,7 +36,7 @@ class Main:
                 continue
 
             for page_link in product.page_links:
-                self._page.get(page_link)
+                self._browser.get(page_link)
                 self._product_page.go_to_reviews_page()
                 reviews = self._reviews_page.get_reviews(product=product)
                 product.reviews.extend(reviews)
@@ -45,7 +45,7 @@ class Main:
                 print(f"Количество отзывов: {len(product.reviews)}")
                 self._result_workbook.write_result(product=product)
             
-        self._page.quit()
+        self._browser.quit()
         self._error.print_failed_product()
 
 if __name__ == "__main__":

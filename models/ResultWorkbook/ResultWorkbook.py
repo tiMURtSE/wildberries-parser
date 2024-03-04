@@ -1,7 +1,7 @@
 from typing import List
 import openpyxl
 from openpyxl.worksheet.worksheet import Worksheet
-from my_library import Workbook
+from Workbook import Workbook
 
 from models.Product.Product import Product
 from models.Review.Review import Review

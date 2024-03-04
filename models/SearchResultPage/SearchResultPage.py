@@ -2,9 +2,9 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from models.Page.Page import Page
+from Browser import Browser
 
-class SearchResultPage(Page):
+class SearchResultPage(Browser):
     PRODUCT_CARD_CLASS = "product-card.product-card--hoverable.j-card-item"
     PRODUCT_RATE_CLASS = "address-rate-mini.address-rate-mini--sm"
     PRODUCT_PAGE_LINK_CLASS = "product-card__link"

@@ -1,9 +1,9 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from models.Page.Page import Page
+from Browser import Browser
 
-class ProductPage(Page):
+class ProductPage(Browser):
     REVIEWS_PAGE_LINK_ID = "comments_reviews_link"
 
     def __init__(self):

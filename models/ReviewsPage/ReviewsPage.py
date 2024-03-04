@@ -2,12 +2,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-from models.Page.Page import Page
+from Browser import Browser
 from models.Product.Product import Product
 from models.ReviewElement.ReviewElement import ReviewElement
 from models.Error.Error import Error
 
-class ReviewsPage(Page):
+class ReviewsPage(Browser):
     REVIEW_CLASS = "comments__item"
     SORTING_CLASS = "product-feedbacks__sorting"
 
