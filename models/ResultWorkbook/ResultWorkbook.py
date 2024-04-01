@@ -7,7 +7,7 @@ from models.Product.Product import Product
 from models.Review.Review import Review
 
 class ResultWorkbook(Workbook):
-    RESULT_WORKBOOK_FILE_PATH = "C:/Users/user10/Desktop/Stuff/Отзывы/Wildberries/Новые отзывы (Wildberries).xlsx"
+    RESULT_WORKBOOK_FILE_PATH = "C:/Users/user10/Desktop/Stuff/Плюсы и минусы товара/Wildberries/Отзывы из Wildberries.xlsx"
 
     PRODUCT_ID_COL_TITLE = "product_id"
     ARTICLE_COL_TITLE = "c:vendor_sku"

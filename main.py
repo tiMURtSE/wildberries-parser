@@ -1,12 +1,12 @@
-from Workbook import Workbook
-from models.WorksheetConverter.WorksheetConverter import WorksheetConverter
-from Browser import Browser
+from basic_decor_library import Workbook
+from basic_decor_library import Browser
 from models.MainPage.MainPage import MainPage
 from models.SearchResultPage.SearchResultPage import SearchResultPage
 from models.ProductPage.ProductPage import ProductPage
 from models.ReviewsPage.ReviewsPage import ReviewsPage
 from models.ResultWorkbook.ResultWorkbook import ResultWorkbook
 from models.Error.Error import Error
+
 from consts import URL
 
 class Main:
@@ -18,7 +18,6 @@ class Main:
         self._reviews_page = ReviewsPage()
         self._export_workbook = Workbook()
         self._result_workbook = ResultWorkbook()
-        self._worksheet_converter = WorksheetConverter()
         self._error = Error()
 
     def run(self):
