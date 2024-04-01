@@ -1,5 +1,5 @@
-from basic_decor_library import Workbook
-from basic_decor_library import Browser
+from basic_decor_library.Workbook import Workbook
+from basic_decor_library.Browser import Browser
 from models.MainPage.MainPage import MainPage
 from models.SearchResultPage.SearchResultPage import SearchResultPage
 from models.ProductPage.ProductPage import ProductPage
@@ -11,22 +11,23 @@ from consts import URL
 
 class Main:
     def __init__(self):
+        self._export_workbook = Workbook()
         self._browser = Browser()
         self._main_page = MainPage()
         self._search_result_page = SearchResultPage()
         self._product_page = ProductPage()
         self._reviews_page = ReviewsPage()
-        self._export_workbook = Workbook()
         self._result_workbook = ResultWorkbook()
         self._error = Error()
 
     def run(self):
         self._browser.get(URL)
-        sheet = self._export_workbook.get_data()
-        products = self._worksheet_converter.convert_to_products(sheet=sheet)
+        product_property_names = ["Артикул"]
+        products = self._export_workbook.create_products_from_excel_data(start_pos=3, product_property_names=product_property_names)
         start_pos = int(input("Номер товара, с которого нужно начать прохождение парсинг:\n"))
 
         for product in products[start_pos:]:
+            print(product.__dict__)
             self._main_page.search_product(product=product)
             product.page_links = self._search_result_page.get_product_page_links()
 

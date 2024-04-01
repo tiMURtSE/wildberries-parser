@@ -2,7 +2,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from Browser import Browser
+from basic_decor_library.Browser import Browser
 
 class SearchResultPage(Browser):
     PRODUCT_CARD_CLASS = "product-card.product-card--hoverable.j-card-item"

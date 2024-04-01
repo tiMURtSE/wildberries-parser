@@ -2,7 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-from Browser import Browser
+from basic_decor_library.Browser import Browser
 from models.Product.Product import Product
 from models.ReviewElement.ReviewElement import ReviewElement
 from models.Error.Error import Error

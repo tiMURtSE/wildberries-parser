@@ -1,6 +1,6 @@
 import urllib.parse
 
-from basic_decor_library import Browser
+from basic_decor_library.Browser import Browser
 from models.Product.Product import Product
 from consts import URL
 

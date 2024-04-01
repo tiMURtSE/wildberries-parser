@@ -1,7 +1,7 @@
 from typing import List
 import openpyxl
 from openpyxl.worksheet.worksheet import Worksheet
-from Workbook import Workbook
+from basic_decor_library.Workbook import Workbook
 
 from models.Product.Product import Product
 from models.Review.Review import Review
@@ -18,14 +18,6 @@ class ResultWorkbook(Workbook):
     def __init__(self):
         self._workbook = openpyxl.load_workbook(self.RESULT_WORKBOOK_FILE_PATH)
         self._sheet: Worksheet = self._workbook.active
-        # self._columns_to_write = [
-        #     self.PRODUCT_ID_COL_TITLE,
-        #     self.ARTICLE_COL_TITLE,
-        #     self.CUSTOMER_NAME_COL_TITLE,
-        #     self.COMMENT_COL_TITLE,
-        #     self.RATE_COL_TITLE
-        # ]
-        # self._columns_indexes_to_write = self.find_column_indexes(column_names=self._columns_to_write)
 
     def write_result(self, product: Product):
         row_start_position = self._get_row_start_position()

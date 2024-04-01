@@ -1,7 +1,7 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-from Browser import Browser
+from basic_decor_library.Browser import Browser
 
 class ProductPage(Browser):
     REVIEWS_PAGE_LINK_ID = "comments_reviews_link"
