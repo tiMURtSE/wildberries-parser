@@ -1,15 +1,17 @@
 import urllib.parse
 
 from basic_decor_library.Browser import Browser
-from models.Product.Product import Product
+from basic_decor_library.ExportProduct import ExportProduct
+from models.MarketplaceParserProduct.MarketplaceParserProduct import MarketplaceParserProduct
 from consts import URL
 
 class MainPage(Browser):
     def __init__(self):
         super().__init__()
 
-    def search_product(self, product: Product):
-        search_query = product.get_name()
+    def search_product(self, product: MarketplaceParserProduct):
+        # search_query = product.get_name()
+        search_query = product.name
         encoded_search_query = urllib.parse.quote(search_query)
         configured_url = self._get_configured_search_query(search_query=encoded_search_query)
 

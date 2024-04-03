@@ -1,6 +1,4 @@
 ## TODO
-    + Добавить логи
-    - Исправить метод _write_result
     - Убрать тестовый ввод из ExportWorkbook
 
 ## ALGORITHM

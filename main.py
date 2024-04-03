@@ -1,5 +1,6 @@
 from basic_decor_library.Workbook import Workbook
 from basic_decor_library.Browser import Browser
+from models.MarketplaceParserProduct.MarketplaceParserProduct import MarketplaceParserProduct
 from models.MainPage.MainPage import MainPage
 from models.SearchResultPage.SearchResultPage import SearchResultPage
 from models.ProductPage.ProductPage import ProductPage
@@ -23,11 +24,10 @@ class Main:
     def run(self):
         self._browser.get(URL)
         product_property_names = ["Артикул"]
-        products = self._export_workbook.create_products_from_excel_data(start_pos=3, product_property_names=product_property_names)
+        products = self._export_workbook.create_products_from_excel_data(start_pos=3, product_property_names=product_property_names, product_class_type=MarketplaceParserProduct)
         start_pos = int(input("Номер товара, с которого нужно начать прохождение парсинг:\n"))
 
         for product in products[start_pos:]:
-            print(product.__dict__)
             self._main_page.search_product(product=product)
             product.page_links = self._search_result_page.get_product_page_links()
 
@@ -37,7 +37,7 @@ class Main:
 
             for page_link in product.page_links:
                 self._browser.get(page_link)
-                self._product_page.go_to_reviews_page()
+                self._product_page.go_to_reviews_page(product=product)
                 reviews = self._reviews_page.get_reviews(product=product)
                 product.reviews.extend(reviews)
 

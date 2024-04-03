@@ -1,6 +1,7 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 
 from basic_decor_library.Browser import Browser
 
@@ -33,11 +34,14 @@ class SearchResultPage(Browser):
         return filtered_page_links
 
     def _get_product_cards(self):
-        product_cards = self._wait.until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, self.PRODUCT_CARD_CLASS))
-        )
+        try:
+            product_cards = self._wait.until(
+                EC.presence_of_all_elements_located((By.CLASS_NAME, self.PRODUCT_CARD_CLASS))
+            )
 
-        return product_cards
+            return product_cards
+        except TimeoutException:
+            print("TimeoutException при получении карточек товаров")
 
     def _find_product_rate(self, product_card: WebElement):
         rate_element = product_card.find_element(By.CLASS_NAME, self.PRODUCT_RATE_CLASS)

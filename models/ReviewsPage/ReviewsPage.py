@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
 from basic_decor_library.Browser import Browser
-from models.Product.Product import Product
+from basic_decor_library.ExportProduct import ExportProduct
+from models.MarketplaceParserProduct.MarketplaceParserProduct import MarketplaceParserProduct
 from models.ReviewElement.ReviewElement import ReviewElement
 from models.Error.Error import Error
 
@@ -16,11 +17,11 @@ class ReviewsPage(Browser):
         self._review_element = ReviewElement()
         self._error = Error()
 
-    def get_reviews(self, product: Product):
+    def get_reviews(self, product: MarketplaceParserProduct):
         reviews = []
 
         if not self._has_reviews():
-            print(f"Нет отзывов для товара {product.get_name()}")
+            print(f"Нет отзывов для товара {product.series} {product.properties['Артикул']}")
             return reviews
         
         self._scroll_to_bottom()

@@ -1,4 +1,3 @@
-from typing import List
 import openpyxl
 from openpyxl.worksheet.worksheet import Worksheet
 from basic_decor_library.Workbook import Workbook
@@ -31,13 +30,11 @@ class ResultWorkbook(Workbook):
 
     def _write_review(self, row_index: int, review: Review, product: Product):
         product_id_col_index = self.find_column_index(column_name=self.PRODUCT_ID_COL_TITLE)
-        article_col_index = self.find_column_index(column_name=self.ARTICLE_COL_TITLE)
         customer_name_col_index = self.find_column_index(column_name=self.CUSTOMER_NAME_COL_TITLE)
         comment_col_index = self.find_column_index(column_name=self.COMMENT_COL_TITLE)
         rate_col_index = self.find_column_index(column_name=self.RATE_COL_TITLE)
 
         self._sheet.cell(row=row_index, column=product_id_col_index).value = product.id
-        self._sheet.cell(row=row_index, column=article_col_index).value = product.article
 
         self._sheet.cell(row=row_index, column=customer_name_col_index).value = review._customer_name
         self._sheet.cell(row=row_index, column=comment_col_index).value = review._comment
